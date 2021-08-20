@@ -7,4 +7,5 @@ urlpatterns = [
     path("", views.index, name="index"),
     path("wiki/<str:entry>", views.entry, name="entry"),
     path("newPage", views.newPage, name="newPage"),
+    path("wiki/<str:entry>/editPage", views.editPage, name="editPage"),
 ]

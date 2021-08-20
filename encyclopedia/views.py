@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from markdown2 import markdown
 from django import forms
-from django.http import HttpResponseRedirect
+
 
 from . import util
 
@@ -115,3 +115,11 @@ def newPage(request):
     }
     return render(request, "encyclopedia/newPage.html", context)
 
+
+
+def editPage(request, entry):
+    text = util.get_entry(entry)
+    context = {
+        "entry": text,
+    }
+    return render(request, "encyclopedia/editPage.html", context)
