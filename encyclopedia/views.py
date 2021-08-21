@@ -2,6 +2,7 @@ from django.shortcuts import render
 from markdown2 import markdown
 from django import forms
 from pprint import pprint
+import random
 
 
 from . import util
@@ -151,3 +152,15 @@ def editPage(request, entry):
         "title": entry,
     }
     return render(request, "encyclopedia/editPage.html", context)
+
+
+def randomPage(request):
+    entries = util.list_entries()
+    entry = random.choice(entries)
+    context = {
+        "title": entry,
+        "entry": markdown(util.get_entry(entry)),
+        "searchForm": SearchForm(),
+    }
+
+    return render(request, "encyclopedia/entry.html", context)
